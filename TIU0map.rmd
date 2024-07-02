@@ -1,0 +1,25 @@
+---
+title: "Untitled"
+output: html_document
+date: "2024-06-11"
+---
+
+```{r}
+d <- read.csv(file = 'campus_location_TIU.csv')
+
+
+
+library(DT)
+datatable(d)
+
+
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>% 
+  addMarkers(lng = d$lng, lat = d$lat,
+             popup = paste0(d$name, '<br>', d$address)) %>% 
+  addMiniMap(positio = 'topright') %>%
+  addScaleBar(position="bottomleft")
+```
+
